@@ -208,27 +208,61 @@
     mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
   </script>
 
-  <!-- 커버페이지 '시작하기' 클릭 시 본문 스크롤 및 라우팅 보장 스크립트 -->
+  <!-- 커버페이지 버튼 클릭 및 라우팅 보장 스크립트 -->
   <script>
     document.addEventListener('click', function(e) {
       var link = e.target.closest('section.cover a');
-      if (link) {
-        var href = link.getAttribute('href') || '';
-        // #start 또는 #소개 등 시작 앵커 클릭 시
-        if (href === '#start' || href.indexOf('#start') > -1 || href === '#소개') {
-          e.preventDefault();
-          var cover = document.querySelector('section.cover');
-          if (cover) {
-            var targetTop = cover.offsetHeight;
-            window.scrollTo({
-              top: targetTop,
-              behavior: 'smooth'
-            });
-            try {
-              history.pushState(null, null, '#/README?id=start');
-            } catch (err) {}
+      if (!link) return;
+
+      var href = link.getAttribute('href') || '';
+
+      // 1. 외부 링크 (GitHub 등)는 기본 동작 유지
+      if (href.indexOf('http://') === 0 || href.indexOf('https://') === 0) {
+        return;
+      }
+
+      // 2. '시작하기' (#start) 클릭 시: 본문 상단으로 부드럽게 스크롤
+      if (href === '#start' || href.indexOf('start') > -1 || href === '#소개') {
+        e.preventDefault();
+        var cover = document.querySelector('section.cover');
+        if (cover) {
+          var targetTop = cover.offsetHeight;
+          window.scrollTo({
+            top: targetTop,
+            behavior: 'smooth'
+          });
+          try {
+            history.pushState(null, null, '#/README?id=start');
+          } catch (err) {}
+        }
+        return;
+      }
+
+      // 3. 서브페이지 링크 (과목별 핵심 요약, 빈출 계산공식집 등)
+      // Docsify 해시 라우팅 규격으로 정규화하여 안정적인 이동 보장
+      var targetRoute = href;
+      // 시작 부분의 '#' 또는 '#/' 또는 '/' 정리
+      targetRoute = targetRoute.replace(/^#\/?/, '').replace(/^\//, '');
+      // 끝의 '.md' 정리
+      targetRoute = targetRoute.replace(/\.md$/, '');
+
+      if (targetRoute) {
+        e.preventDefault();
+        var cover = document.querySelector('section.cover');
+        if (cover) {
+          cover.classList.remove('show');
+        }
+        var newHash = '#/' + decodeURI(targetRoute);
+        if (window.location.hash !== newHash) {
+          window.location.hash = newHash;
+        } else {
+          try {
+            window.dispatchEvent(new HashChangeEvent('hashchange'));
+          } catch (err) {
+            window.location.reload();
           }
         }
+        window.scrollTo(0, 0);
       }
     });
   </script>

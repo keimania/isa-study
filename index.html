@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>2027 정보시스템감리사 합격 마스터</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="2027년 정보시스템감리사 자격 취득을 위한 모바일/태블릿 맞춤형 종합 수험 지식베이스">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  
+  <!-- 모바일 PWA 및 웹앱 최적화 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="감리사마스터">
+  <meta name="theme-color" content="#1e293b">
+
+  <!-- Pretendard 폰트 (모바일 최적화 고가독성 한글 폰트) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- Docsify 테마 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <!-- KaTeX 수식 렌더링 스타일 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+
+  <style>
+    :root {
+      --theme-color: #2563eb;
+      --text-color: #1e293b;
+      --sidebar-width: 300px;
+    }
+    
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-color);
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+    }
+
+    /* 사이드바 스타일링 */
+    .sidebar {
+      background-color: #f8fafc;
+      border-right: 1px solid #e2e8f0;
+    }
+    .sidebar-nav strong {
+      color: #0f172a;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .sidebar-nav ul li a {
+      font-size: 0.9rem;
+      color: #475569;
+      padding: 6px 0;
+    }
+    .sidebar-nav ul li.active > a {
+      color: var(--theme-color) !important;
+      font-weight: 700;
+    }
+
+    /* 본문 콘텐츠 스타일링 */
+    .markdown-section {
+      max-width: 900px;
+      padding: 30px 25px 60px 25px;
+    }
+    .markdown-section h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .markdown-section h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1e293b;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.3rem;
+      margin-top: 2rem;
+    }
+    .markdown-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 1.5rem;
+    }
+
+    /* 모바일 테이블 스크롤 최적화 */
+    .markdown-section table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      width: 100%;
+      border-radius: 8px;
+    }
+    .markdown-section table th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      white-space: nowrap;
+    }
+    .markdown-section table td {
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.93rem;
+    }
+
+    /* 알림 블록(Callout / Blockquote) 스타일링 */
+    .markdown-section blockquote {
+      border-left: 4px solid var(--theme-color);
+      background-color: #f0fdf4;
+      color: #166534;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.2rem 0;
+    }
+
+    /* 모바일 환경 최적화 */
+    @media screen and (max-width: 768px) {
+      body {
+        font-size: 15.5px;
+        line-height: 1.68;
+      }
+      .markdown-section {
+        padding: 20px 16px 50px 16px;
+      }
+      .markdown-section h1 {
+        font-size: 1.55rem;
+      }
+      .markdown-section h2 {
+        font-size: 1.3rem;
+      }
+      .markdown-section h3 {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* 수식 블록 가운데 정렬 */
+    .katex-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 0;
+    }
+
+    /* 상단 진행률 바 */
+    .progress {
+      background-color: var(--theme-color) !important;
+      height: 3px !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">페이지를 불러오는 중입니다...</div>
+  
+  <script>
+    window.$docsify = {
+      name: '감리사 합격 마스터',
+      repo: 'https://github.com/keimania/isa-study',
+      loadSidebar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      coverpage: true,
+      onlyCover: false,
+      themeColor: '#2563eb',
+      
+      // 검색 플러그인 설정 (한국어 지원)
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '검색어를 입력하세요 (예: EVM, 정규화)',
+        noData: '검색 결과가 없습니다.',
+        depth: 4
+      },
+
+      // 복사 버튼
+      copyCode: {
+        buttonText: '복사',
+        errorText: '실패',
+        successText: '복사됨'
+      }
+    };
+  </script>
+
+  <!-- Docsify 핵심 라이브러리 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+
+  <!-- 검색 플러그인 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+  <!-- 코드 복사 플러그인 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+
+  <!-- 이미지 확대 플러그인 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
+  <!-- KaTeX 수식 지원 플러그인 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+
+  <!-- Mermaid 다이어그램 지원 플러그인 -->
+  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="//unpkg.com/docsify-mermaid@latest/dist/docsify-mermaid.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+</body>
+</html>

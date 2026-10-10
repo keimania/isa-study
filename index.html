@@ -182,7 +182,25 @@
         buttonText: '복사',
         errorText: '실패',
         successText: '복사됨'
-      }
+      },
+
+      // 수식 자동 렌더링 플러그인 (인라인 $수식$ 및 블록 $$수식$$ 보장)
+      plugins: [
+        function(hook, vm) {
+          hook.doneEach(function() {
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(document.body, {
+                delimiters: [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '$', right: '$', display: false }
+                ],
+                ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                throwOnError: false
+              });
+            }
+          });
+        }
+      ]
     };
   </script>
 
@@ -198,7 +216,9 @@
   <!-- 이미지 확대 플러그인 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
 
-  <!-- KaTeX 수식 지원 플러그인 -->
+  <!-- KaTeX 핵심 라이브러리 및 확장 플러그인 (필수 선행 로드) -->
+  <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
 
   <!-- Mermaid 다이어그램 지원 플러그인 -->
